@@ -1,0 +1,75 @@
+import math
+import sys
+
+def distance_between_points():
+    x1 = float(input("Enter x1: "))
+    y1 = float(input("Enter y1: "))
+    x2 = float(input("Enter x2: "))
+    y2 = float(input("Enter y2: "))
+    dist = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    print("Distance between points:", dist)
+
+def sum_command_line():
+    # In real use: sys.argv, but here we'll take input for simplicity
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print("Sum:", a + b)
+
+def reverse_string():
+    s = input("Enter a string: ")
+    print("Reversed string:", s[::-1])
+
+def count_vowels():
+    s = input("Enter a string: ").lower()
+    vowels = "aeiou"
+    count = sum(1 for ch in s if ch in vowels)
+    print("Number of vowels:", count)
+
+def check_palindrome():
+    s = input("Enter a string: ")
+    if s == s[::-1]:
+        print("The string is a palindrome")
+    else:
+        print("The string is not a palindrome")
+
+def replace_spaces():
+    s = input("Enter a sentence: ")
+    print("After replacing spaces:", s.replace(" ", "-"))
+
+def capitalize_words():
+    s = input("Enter a sentence: ")
+    print("Converted:", s.title())
+
+# Menu
+while True:
+    print("\n--- MENU ---")
+    print("1. Compute distance between two points")
+    print("2. Sum of two numbers (command line style)")
+    print("3. Reverse a string")
+    print("4. Count vowels in a string")
+    print("5. Check if string is palindrome")
+    print("6. Replace spaces with hyphens")
+    print("7. Capitalize first letter of each word")
+    print("8. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        distance_between_points()
+    elif choice == 2:
+        sum_command_line()
+    elif choice == 3:
+        reverse_string()
+    elif choice == 4:
+        count_vowels()
+    elif choice == 5:
+        check_palindrome()
+    elif choice == 6:
+        replace_spaces()
+    elif choice == 7:
+        capitalize_words()
+    elif choice == 8:
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice! Please try again.")

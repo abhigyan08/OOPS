@@ -1,0 +1,71 @@
+def multiplication_table():
+    n = int(input("Enter a number: "))
+    print(f"Multiplication table of {n}:")
+    for i in range(1, 11):
+        print(f"{n} x {i} = {n * i}")
+
+def inverted_pyramid():
+    n = int(input("Enter the number of rows: "))
+    for i in range(n, 0, -1):
+        for j in range(i, 0, -1):
+            print(j, end=" ")
+        print()
+
+def check_prime():
+    num = int(input("Enter a number: "))
+    if num <= 1:
+        print(num, "is not prime")
+        return
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            print(num, "is not prime")
+            return
+    print(num, "is prime")
+
+def sum_of_digits():
+    num = int(input("Enter a number: "))
+    total = 0
+    temp = num
+    while temp > 0:
+        total += temp % 10
+        temp //= 10
+    print(f"Sum of digits of {num} is {total}")
+
+def fizzbuzz():
+    for i in range(1, 51):
+        if i % 3 == 0 and i % 5 == 0:
+            print("FizzBuzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        elif i % 5 == 0:
+            print("Buzz")
+        else:
+            print(i)
+
+# Menu-driven program
+while True:
+    print("\n--- MENU ---")
+    print("1. Multiplication table")
+    print("2. Inverted pyramid of numbers")
+    print("3. Check prime number")
+    print("4. Sum of digits")
+    print("5. FizzBuzz (1 to 50)")
+    print("6. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        multiplication_table()
+    elif choice == 2:
+        inverted_pyramid()
+    elif choice == 3:
+        check_prime()
+    elif choice == 4:
+        sum_of_digits()
+    elif choice == 5:
+        fizzbuzz()
+    elif choice == 6:
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice! Try again.")

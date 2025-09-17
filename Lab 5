@@ -1,0 +1,97 @@
+# Q1: Average marks with default parameter
+def average_marks(sub1=0, sub2=0, sub3=0):
+    return (sub1 + sub2 + sub3) / 3
+
+# Q2: Cafe bill calculation
+def total_bill(*items):
+    total = 0
+    for name, price in items:
+        total += price
+    return total
+
+# Q3: Apply discount using lambda
+apply_discount = lambda price, discount: price - (price * discount / 100)
+
+# Q4: Area function
+def area(L, W=None):
+    if W is None:
+        return L * L  # square
+    else:
+        return L * W  # rectangle
+
+# Q5: Bonus salary
+def bonus(salary, rate=0.10):
+    return salary + (salary * rate)
+
+# Q6: Student record
+def stuRecord(course, *subjects, **details):
+    print("Course:", course)
+    print("Subjects:", subjects)
+    print("Details:", details)
+
+while True:
+    print("\n--- MENU ---")
+    print("1. Calculate average marks")
+    print("2. Calculate total cafe bill")
+    print("3. Apply discount (lambda)")
+    print("4. Calculate area (square/rectangle)")
+    print("5. Calculate salary after bonus")
+    print("6. Student record with course, subjects & details")
+    print("7. Exit")
+
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        print("Enter marks (press Enter if test missed):")
+        sub1 = int(input("Subject 1: ") or 0)
+        sub2 = int(input("Subject 2: ") or 0)
+        sub3 = int(input("Subject 3: ") or 0)
+        print("Average marks:", average_marks(sub1, sub2, sub3))
+
+    elif choice == 2:
+        n = int(input("Enter number of items: "))
+        items = []
+        for i in range(n):
+            name = input(f"Enter item {i+1} name: ")
+            price = float(input(f"Enter price of {name}: "))
+            items.append((name, price))
+        print("Total bill:", total_bill(*items))
+
+    elif choice == 3:
+        price = float(input("Enter original price: "))
+        discount = float(input("Enter discount %: "))
+        print("Price after discount:", apply_discount(price, discount))
+
+    elif choice == 4:
+        L = float(input("Enter length: "))
+        w_input = input("Enter width (press Enter if square): ")
+        if w_input:
+            W = float(w_input)
+            print("Rectangle area:", area(L, W))
+        else:
+            print("Square area:", area(L))
+
+    elif choice == 5:
+        salary = float(input("Enter salary: "))
+        rate_input = input("Enter bonus rate (press Enter for default 10%): ")
+        if rate_input:
+            rate = float(rate_input)
+            print("New salary:", bonus(salary, rate))
+        else:
+            print("New salary:", bonus(salary))
+
+    elif choice == 6:
+        course = input("Enter course name: ")
+        subjects = input("Enter subjects separated by commas: ").split(",")
+        details = {}
+        details["name"] = input("Enter student name: ")
+        details["age"] = input("Enter student age: ")
+        details["grade"] = input("Enter student grade: ")
+        stuRecord(course, *subjects, **details)
+
+    elif choice == 7:
+        print("Exiting program. Goodbye!")
+        break
+
+    else:
+        print("Invalid choice! Try again.")

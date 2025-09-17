@@ -1,0 +1,62 @@
+# Q1 WRITE A PROGRAM TO INPUT 10 INTEGERS INTO A LIST AND PRINT THE LARGEST AND SMALLEST NUMBER.
+# Q2 WRITE A PROGRAM TO INPUT 5 NAMES INTO A LIST AND PRINT THEM A IN SORTED ORDER.
+# Q3 WRITE A PROGRAM TO REVERSE A LIST WITHOUT USING THE REVERSE FUNCTION.
+# Q4 GIVEN A LIST OF MARKS, WRITE A PROGRAM TO FIND THE AVERAGE OF MARKS AND DISPLAY STUDENTS WHO SCORED ABOVE AVERAGE.
+# Q5 PRINT LIST IN REVERSE USING LOOP.
+# Q6 Print all the items of a list using while loop by going through all the index numbers
+# Q7 WAP to swap the values of two variables using a tuple without using a temp variable
+
+
+
+def menu():
+    print("---Menu---")
+    print("1. Print the largest and smallest numbers from a list")
+    print("2. Print names in a sorted manner")
+    print("3. Print the reverse of a list without using the reverse function")
+    print("4. Find the average marks and display students who scored above average")
+    print("5. Print reverse of list using loop")
+    print("6. Print all items of the list")
+
+
+while True:
+    menu()
+    choice = input("Enter your choice: ")
+    if choice == "1":
+        a = list(map(int, input("Enter a list of numbers (comma separated): ").split(",")))
+        print("The list is: ",a)
+        smallest = float('inf')
+        for i in a:
+            if i < smallest:
+                smallest = i
+
+        largest = float('-inf')
+        for j in a:
+            if j > largest:
+                largest = j
+
+        print("The smallest number is: ",smallest)
+        print("The largest number is: ",largest)
+    elif choice == "2":
+        b = list(input("Enter a list of names (comma separated): ").split(","))
+        print("The list is: ",b)
+        b.sort()
+        print("The sorted list is: ",b)
+
+    elif choice == "3":
+        c = list(map(int, input("Enter a list of numbers (comma separated): ").split(",")))
+        d = c[ : : -1]
+        print("The list is: ",d)
+
+    elif choice == "4":
+        e = list(map(float, input("Enter a list of marks (comma separated): ").split(",")))
+        print("The list is: ",e)
+        if(avg := sum(e)/len(e)):
+            print(f"The average marks is: {avg}")
+        count = 0
+        for i in e:
+            if i > avg:
+                count += 1
+                if count == 1:
+                    print(count, "Student has secured above average marks")
+                elif count > 1:
+                    print(count, "Students have secured above average marks")
