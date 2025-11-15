@@ -1,0 +1,16 @@
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_openml
+
+# Load Titanic dataset
+data = fetch_openml("titanic", version=1, as_frame=True).frame
+
+# Ensure correct column names
+# 'sex' → gender, 'survived' → 0 = died, 1 = survived
+death_counts = data[data['survived'] == '0']['sex'].value_counts()
+
+# Plot
+death_counts.plot(kind='bar', color=['blue', 'pink'])
+plt.title('Number of Males and Females Who Died on the Titanic')
+plt.xlabel('Sex')
+plt.ylabel('Count')
+plt.show()
