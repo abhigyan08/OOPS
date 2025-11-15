@@ -1,0 +1,268 @@
+# -------------------------
+#       Q1 CLASSES
+# -------------------------
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+
+
+class Employee(Person):
+    def __init__(self, name, age, employee_id, salary):
+        super().__init__(name, age)
+        self.employee_id = employee_id
+        self.salary = salary
+
+    def display(self):
+        super().display()
+        print(f"Employee ID: {self.employee_id}")
+        print(f"Salary: {self.salary}")
+
+
+class Manager(Employee):
+    def __init__(self, name, age, emp_id, salary, department):
+        super().__init__(name, age, emp_id, salary)
+        self.department = department
+
+    def display(self):
+        super().display()
+        print(f"Department: {self.department}")
+
+
+class Certifications:
+    def __init__(self, cert_list):
+        self.cert_list = cert_list
+
+    def display(self):
+        print("Certifications:", ", ".join(self.cert_list))
+
+
+class Trainer(Employee, Certifications):
+    def __init__(self, name, age, employee_id, salary, cert_list):
+        Employee.__init__(self, name, age, employee_id, salary)
+        Certifications.__init__(self, cert_list)
+
+    def display(self):
+        Employee.display(self)
+        Certifications.display(self)
+
+
+# -------------------------
+#       Q2 CLASSES
+# -------------------------
+
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def display(self):
+        print(f"Product Name: {self.name}")
+        print(f"Price: ₹{self.price}")
+
+
+class Electronics(Product):
+    def __init__(self, name, price, brand, warranty):
+        super().__init__(name, price)
+        self.brand = brand
+        self.warranty = warranty
+
+    def display(self):
+        super().display()
+        print(f"Brand: {self.brand}")
+        print(f"Warranty: {self.warranty} years")
+
+
+class Clothing(Product):
+    def __init__(self, name, price, size, fabric_type):
+        super().__init__(name, price)
+        self.size = size
+        self.fabric_type = fabric_type
+
+    def display(self):
+        super().display()
+        print(f"Size: {self.size}")
+        print(f"Fabric Type: {self.fabric_type}")
+
+
+# -------------------------
+#       Q3 CLASSES
+# -------------------------
+
+class Person2:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+
+
+class Teacher(Person2):
+    def __init__(self, name, age, subject, salary):
+        super().__init__(name, age)
+        self.subject = subject
+        self.salary = salary
+
+    def display(self):
+        super().display()
+        print(f"Subject: {self.subject}")
+        print(f"Salary: ₹{self.salary}")
+
+    def teach(self):
+        print(f"{self.name} is teaching {self.subject}.")
+
+
+class ClassTeacher(Teacher):
+    def __init__(self, name, age, subject, salary, class_name, num_students):
+        super().__init__(name, age, subject, salary)
+        self.class_name = class_name
+        self.num_students = num_students
+
+    def display(self):
+        super().display()
+        print(f"Class Incharge: {self.class_name}")
+        print(f"No. of Students: {self.num_students}")
+
+    def conduct_meeting(self):
+        print(f"{self.name} is conducting a PTM for class {self.class_name}.")
+
+
+# =====================================================
+#           MENU DRIVEN PROGRAM (USER INPUT)
+# =====================================================
+
+def menu():
+    while True:
+        print("\n==============================")
+        print("         MAIN MENU")
+        print("==============================")
+        print("1. Q1 – Company Employee System")
+        print("2. Q2 – Online Store")
+        print("3. Q3 – School System")
+        print("4. Exit")
+        print("==============================")
+
+        choice = input("Enter your choice: ")
+
+        # -----------------------------
+        #        Q1 – User Input
+        # -----------------------------
+        if choice == "1":
+            print("\n--- Q1: PERSON / EMPLOYEE / MANAGER / TRAINER ---")
+
+            print("\nEnter Person details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            p1 = Person(name, age)
+
+            print("\nEnter Employee details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            emp_id = input("Employee ID: ")
+            salary = int(input("Salary: "))
+            e1 = Employee(name, age, emp_id, salary)
+
+            print("\nEnter Manager details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            emp_id = input("Employee ID: ")
+            salary = int(input("Salary: "))
+            dept = input("Department: ")
+            m1 = Manager(name, age, emp_id, salary, dept)
+
+            print("\nEnter Trainer details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            emp_id = input("Employee ID: ")
+            salary = int(input("Salary: "))
+            certs = input("Enter certifications (comma separated): ").split(",")
+            certs = [c.strip() for c in certs]
+            t1 = Trainer(name, age, emp_id, salary, certs)
+
+            print("\n----- OUTPUT -----")
+            p1.display();
+            print()
+            e1.display();
+            print()
+            m1.display();
+            print()
+            t1.display()
+
+        # -----------------------------
+        #        Q2 – User Input
+        # -----------------------------
+        elif choice == "2":
+            print("\n--- Q2: ONLINE STORE ---")
+
+            print("\nEnter Electronics Item:")
+            name = input("Product Name: ")
+            price = int(input("Price: "))
+            brand = input("Brand: ")
+            warranty = int(input("Warranty (years): "))
+            eitem = Electronics(name, price, brand, warranty)
+
+            print("\nEnter Clothing Item:")
+            name = input("Product Name: ")
+            price = int(input("Price: "))
+            size = input("Size: ")
+            fabric = input("Fabric Type: ")
+            citem = Clothing(name, price, size, fabric)
+
+            print("\n----- OUTPUT -----")
+            eitem.display()
+            print()
+            citem.display()
+
+        # -----------------------------
+        #        Q3 – User Input
+        # -----------------------------
+        elif choice == "3":
+            print("\n--- Q3: SCHOOL SYSTEM ---")
+
+            print("\nEnter Person details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            p = Person2(name, age)
+
+            print("\nEnter Teacher details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            subject = input("Subject: ")
+            salary = int(input("Salary: "))
+            t = Teacher(name, age, subject, salary)
+
+            print("\nEnter Class Teacher details:")
+            name = input("Name: ")
+            age = int(input("Age: "))
+            subject = input("Subject: ")
+            salary = int(input("Salary: "))
+            class_name = input("Class Name: ")
+            num_students = int(input("Number of Students: "))
+            ct = ClassTeacher(name, age, subject, salary, class_name, num_students)
+
+            print("\n----- OUTPUT -----")
+            p.display();
+            print()
+            t.display();
+            t.teach();
+            print()
+            ct.display();
+            ct.conduct_meeting()
+
+        elif choice == "4":
+            print("Exiting program...")
+            break
+
+        else:
+            print("Invalid choice! Try again.")
+
+
+# RUN THE MENU
+menu()
