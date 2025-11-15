@@ -1,0 +1,109 @@
+# -------------------------------------------------------
+# Q1. Student Result Processing
+# -------------------------------------------------------
+
+def student_result_processing():
+    try:
+        marks_obtained = float(input("Enter marks obtained: "))
+        total_marks = float(input("Enter total marks: "))
+
+        percentage = (marks_obtained / total_marks) * 100
+        print(f"Percentage: {percentage:.2f}%")
+
+        with open("result.txt", "w") as file:
+            file.write(f"Marks Obtained: {marks_obtained}\n")
+            file.write(f"Total Marks: {total_marks}\n")
+            file.write(f"Percentage: {percentage:.2f}%\n")
+
+        print("Result saved to result.txt")
+
+    except ValueError:
+        print("Error: Please enter numeric values only.")
+    except ZeroDivisionError:
+        print("Error: Total marks cannot be zero.")
+    except FileNotFoundError:
+        print("Error: Unable to create/access result file.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
+# -------------------------------------------------------
+# Q2. Employee Salary Calculation
+# -------------------------------------------------------
+
+def employee_salary_calculation():
+    try:
+        basic_salary = float(input("Enter basic salary: "))
+        hra = float(input("Enter HRA: "))
+        da = float(input("Enter DA: "))
+
+        gross_salary = basic_salary + hra + da
+        print(f"Gross Salary: {gross_salary:.2f}")
+
+    except ValueError:
+        print("Error: Please enter numeric values only.")
+    except KeyboardInterrupt:
+        print("\nInput interrupted by user.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
+# -------------------------------------------------------
+# Q3. File Data Reader
+# -------------------------------------------------------
+
+def file_data_reader():
+    try:
+        filename = input("Enter filename to read: ")
+        with open(filename, "r") as file:
+            print("\n--- File Content ---")
+            for line in file:
+                print(line, end="")
+            print("\n--------------------")
+
+    except FileNotFoundError:
+        print("Error: The file does not exist.")
+    except PermissionError:
+        print("Error: Permission denied to read the file.")
+    except UnicodeDecodeError:
+        print("Error: File contains unreadable characters.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
+
+# -------------------------------------------------------
+#                MENU DRIVEN PROGRAM
+# -------------------------------------------------------
+
+def main_menu():
+    while True:
+        print("\n===================================")
+        print("       EXCEPTION HANDLING MENU")
+        print("===================================")
+        print("1. Student Result Processing")
+        print("2. Employee Salary Calculation")
+        print("3. File Data Reader")
+        print("4. Exit")
+        print("===================================")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            student_result_processing()
+
+        elif choice == "2":
+            employee_salary_calculation()
+
+        elif choice == "3":
+            file_data_reader()
+
+        elif choice == "4":
+            print("Exiting program...")
+            break
+
+        else:
+            print("Invalid choice! Please try again.")
+
+
+# Run the Menu
+main_menu()
